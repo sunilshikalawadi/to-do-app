@@ -1,17 +1,14 @@
-FROM node:14-alpine3.12
+# Dockerfile
+FROM node:14-alpine
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies (if any)
-COPY package.json ./
+# Copy application files
+COPY . /app
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
-COPY . .
-
-# Expose port 4000
-EXPOSE 4000
-
-# Start the app (make sure index.js is the correct entry point)
+# Set the command to start the app
 CMD ["node", "index.js"]
